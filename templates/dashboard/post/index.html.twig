@@ -14,7 +14,7 @@
                 <th>Body</th>
                 <th>Category</th>
                 <th>Is Published</th>
-
+                <th>comments</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -27,6 +27,7 @@
                 <td>{{ post.body }}</td>
                 <td>{{ post.getCategory.getName }}</td>
                 <td>{{ post.getIsPublishText }}</td>
+                <td>{{ post.getComments.count() }}</td>
 
 
                 <td>

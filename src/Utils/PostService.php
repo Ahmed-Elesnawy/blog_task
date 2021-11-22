@@ -26,9 +26,9 @@ class PostService
         return $comment;
     }
 
-    public function getPost($id) : Post
+    public function getPost($id)
     {
-        return $this->postRepository->find($id);
+        return $this->postRepository->findOneFromPublished($id);
     }
 
 

@@ -22,13 +22,25 @@ class PostRepository extends ServiceEntityRepository
 
     public function publishedPostsByCategory($category = null)
     {
-        $builder = $this->createQueryBuilder('posts')->where('posts.is_publish = true');
+        $builder = $this->createQueryBuilder('posts')->where('posts.is_publish = :bool')
+                         ->setParameter('bool',true);
 
         if ( $category ){
             $builder->andWhere('posts.category_id = :category_id')->setParameter('category_id',$category);
         }
 
         return $builder->getQuery()->getResult();
+    }
+
+    public function findOneFromPublished($id)
+    {
+        return $this->createQueryBuilder('posts')
+                     ->where('posts.is_publish = :bool')
+                     ->andWhere('posts.id=:id')
+                     ->setParameter('bool',true)
+                     ->setParameter('id',$id)
+                     ->getQuery()
+                     ->getOneOrNullResult();
     }
 
     // /**
