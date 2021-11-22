@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Posts{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+
+        <div class="w-50">
+            <form method="get" action="{{ path('home') }}">
+                <select name="category" class="form-control">
+                    <option value="">Select Category</option>
+                    {% for category in categories %}
+                        <option {{ category.id == app.request.get('category') ? 'selected' : '' }}
+                                value="{{ category.id }}">{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-primary my-2">Search</button>
+            </form>
+        </div>
+
+
+        {% for post in posts %}
+
+            <div class="post m-3">
+
+                <a href="{{ path('show_post',{id:post.id}) }}"><h4>{{ post.getTitle() }}</h4></a>
+                <div class="body">
+                    {{ post.getBody() }}
+                </div>
+
+                <div>
+                    category:{{ post.getCategory().getName() }}
+                </div>
+
+                <div>
+                    comments:{{ post.getComments.count() }}
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

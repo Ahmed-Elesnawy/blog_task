@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Posts{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+
+        <div class="post m-3">
+
+            <a href="{{ path('show_post',{id:post.id}) }}"><h4>{{ post.getTitle() }}</h4></a>
+            <div class="body">
+                {{ post.getBody() }}
+            </div>
+
+            <div>
+                category:{{ post.getCategory().getName() }}
+            </div>
+        </div>
+
+
+        {% if post.hasComments() %}
+            <div class="comments">
+                <h4>comments</h4>
+                {% for comment in post.getComments() %}
+                    <div>{{ comment.getBody() }} Added By {{ comment.getUser().getUsername }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <hr>
+        <div class="addComment">
+
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+            {{ form_end(form) }}
+
+        </div>
+
+
+    </div>
+
+{% endblock %}
