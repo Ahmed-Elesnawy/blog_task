@@ -5,7 +5,7 @@
 ##### 2- composer install
 ##### 3- Configure your database in .env file
 ##### 4- run php bin/console doctrine:schema:create ( create tables )
-##### 5- run php bin/console doctrine:fixtures:load ( add super admin or you can regeister new user "/register" )
+##### 5- run php bin/console doctrine:fixtures:load ( to add super admin )
 ##### 6- run php bin/console server:start ( run project )
 
 
